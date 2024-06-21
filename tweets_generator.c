@@ -13,6 +13,7 @@
 #define THREE 3
 #define FOUR 4
 #define FIVE 5
+#define TEN 10
 #define MAX_LEN 20
 #define MAX_SENT 1000
 
@@ -55,7 +56,7 @@ int main(int argc, char *argv[]){
 //        }
 
     //if argv[5] > maxwords;
-    size_t seed = strtol(argv[1],NULL,10);
+    size_t seed = strtol(argv[1],NULL,TEN);
     srand(seed);
     printf("%s", argv[3]);
     FILE *fp = fopen(argv[3],"r");
@@ -65,10 +66,10 @@ int main(int argc, char *argv[]){
     LinkedList database = {NULL,NULL,ZERO};
     MarkovChain markov_chain ={.database = &database};
     MarkovChain *ptr_chain =&markov_chain;
-    long word_num= strtol(argv[4],NULL,10);
+    long word_num= strtol(argv[4],NULL,TEN);
     fill_database(fp,(int)word_num,&markov_chain);
     int i =1;
-    long tweet_num = strtol(argv[2],NULL,10);
+    long tweet_num = strtol(argv[2],NULL,TEN);
     while(tweet_num!= 0){
         printf("Tweet %d",i);
         MarkovNode *first_node =get_first_random_node(&markov_chain);

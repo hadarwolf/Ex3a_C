@@ -64,7 +64,7 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr){
         free(n_str);
         return NULL;
     }
-    memccpy(n_str, data_ptr, (int)(strlen(data_ptr)+1),sizeof((strlen(data_ptr)+1)));
+    memcpy(n_str, data_ptr, (int)(strlen(data_ptr)+1));
     *markov_node= (MarkovNode){n_str,NULL,0};
     int check = add(markov_chain->database,markov_node);
     if (check==1){//free?
