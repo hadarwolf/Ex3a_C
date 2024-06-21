@@ -33,7 +33,10 @@ int fill_database(FILE *fp, int words_to_read, MarkovChain *markov_chain){
                 }
                 sentc_end = ZERO;
             }
-            else{sentc_end = ONE;}
+            else{sentc_end = ONE;
+                add_node_to_frequency_list
+                        (prev_node->data,cur_node->data);
+            }
             prev_node = cur_node;
             words_to_read--;
             tok = strtok(NULL,DELIMITERS);

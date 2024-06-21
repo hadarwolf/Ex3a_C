@@ -40,7 +40,7 @@ Node* get_node_from_database(MarkovChain *markov_chain, char *data_ptr){
     Node* cur = markov_chain->database->first;
     while(i < markov_chain->database->size){
         char* try_data = cur->data->data;
-        if (!strcpy(try_data,data_ptr)){
+        if (!strcmp(try_data,data_ptr)){
             return cur;
         }
         cur = cur->next;
@@ -66,6 +66,8 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr){
     }
     memcpy(n_str, data_ptr, (int)(strlen(data_ptr)+1));
     *markov_node= (MarkovNode){n_str,NULL,0};
+//    printf("%s", markov_chain->database->first->data->data);
+//    printf("%s", markov_chain->database->last->data->data);
     int check = add(markov_chain->database,markov_node);
     if (check==1){//free?
         free(n_str);
