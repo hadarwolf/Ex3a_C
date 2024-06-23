@@ -93,13 +93,32 @@ int fill_database(FILE *fp, int words_to_read, MarkovChain *markov_chain){
 }
 
 //seed,num_tweet,path, (opt)num_words
+//void print_database(MarkovChain *markovChain)
+//{
+//    Node *temp_node = (markovChain)->database->first;
+//    int k = 0;
+//    while (temp_node != NULL)
+//    {
+//        fprintf(stdout, "NODE %d: %s - tot_freq: %d\n", k,
+//                temp_node->data->data, temp_node->data->size_freq_lst);
+//        int list_len = temp_node->data->size_freq_lst;
+//        for (int i = 0; i < list_len; i+= 1)
+//        {
+//            fprintf(stdout, "sub_node: %s - frequency: %d\n",
+//                    temp_node->data->frequency_list->markov_node->data,
+//                    temp_node->data->frequency_list->frequency);
+//
+//        }
+//
+//        temp_node = temp_node->next;
+//        k += 1;}}
 
 int main(int argc, char *argv[]){
     if(!(argc ==FIVE || argc ==FOUR )){
         printf(NUM_ARGS_ERROR);
         return EXIT_FAILURE;}
 
-    size_t seed = strtol(argv[1],NULL,TEN);
+    long seed = strtol(argv[1],NULL,TEN);
     srand(seed);
 //    printf("%s", argv[3]);
     FILE *fp = fopen(argv[3],"r");
@@ -114,6 +133,7 @@ int main(int argc, char *argv[]){
     fill_database(fp,(int)word_num,&markov_chain);}
     else{ long word_num = count_words_in_file(argv[3]);
         fill_database(fp,(int)word_num,&markov_chain);}
+//    print_database(&markov_chain);
     int i =1;
     long tweet_num = strtol(argv[2],NULL,TEN);
     while(tweet_num!= 0){

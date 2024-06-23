@@ -80,8 +80,8 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr){
 int add_node_to_frequency_list(MarkovNode *first_node
         , MarkovNode *second_node){
     for(int i =0; i < first_node->size_freq_lst; i++){
-        if(first_node->frequency_list[i].markov_node == second_node){
-            first_node->frequency_list[i].markov_node += 1;
+        if(strcmp(first_node->frequency_list[i].markov_node->data,second_node->data)==0){
+            first_node->frequency_list[i].frequency += 1;
             return EXIT_SUCCESS;
         }
     }
@@ -93,24 +93,9 @@ int add_node_to_frequency_list(MarkovNode *first_node
     first_node->frequency_list = new_freq_lst;
     first_node->frequency_list[first_node->size_freq_lst]=
             (MarkovNodeFrequency){second_node,1};
-
-//    first_node->frequency_list[first_node->size_freq_lst]
-//    .markov_node = second_node;
-//    first_node->frequency_list[first_node->size_freq_lst].frequency = 1;
     first_node->size_freq_lst +=1;
     return EXIT_SUCCESS;}
 
-
-//    MarkovNodeFrequency * cur = first_node->frequency_list;
-//    while(cur != NULL){
-//        if(cur->markov_node == second_node){
-//            cur->frequency +=1;
-//            return EXIT_SUCCESS;
-//        }
-//        cur = cur->
-//    }
-//    MarkovNodeFrequency
-//}
 
 
 
@@ -154,10 +139,10 @@ MarkovNode* get_next_random_node(MarkovNode *cur_markov_node){
     }
     int rand_num = get_random_number(max_num);
     int cur_freq = ZERO;
-    for(int i =ZERO; i < cur_markov_node->size_freq_lst ;i++){
-        cur_freq += cur_markov_node->frequency_list[i].frequency;
-        if(rand_num < cur_freq){
-            return cur_markov_node->frequency_list[i].markov_node;
+    for(int j =ZERO; j < cur_markov_node->size_freq_lst ;j++){
+        rand_num -= cur_markov_node->frequency_list[j].frequency;
+        if(rand_num < 0){
+            return cur_markov_node->frequency_list[j].markov_node;
         }
     }
     return NULL;
