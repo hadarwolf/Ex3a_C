@@ -17,6 +17,52 @@
 #define MAX_LEN 20
 #define MAX_SENT 1000
 
+bool is_delimiter(char ch) {
+    return (strchr(DELIMITERS, ch) != NULL);
+}
+
+int count_words_in_line(const char *line) {
+    int word_count = ZERO;
+    bool in_word = false;
+    char ch;
+
+    while ((ch = *line++) != '\0') {
+        if (is_delimiter(ch)) {
+            if (in_word) {
+                word_count++;
+                in_word = false;
+            }
+        } else {
+            in_word = true;
+        }
+    }
+
+    if (in_word) {
+        word_count++;
+    }
+
+    return word_count;
+}
+
+int count_words_in_file(const char *file_path) {
+    FILE *file = fopen(file_path, "r");
+    if (file == NULL) {
+        printf("Error: The file '%s' was not found.\n", file_path);
+        return EXIT_FAILURE;
+    }
+
+    int word_count = 0;
+    char line[MAX_SENT];
+
+    while (fgets(line, sizeof(line), file) != NULL) {
+        word_count += count_words_in_line(line);
+    }
+
+    fclose(file);
+    return word_count;
+}
+
+
 int fill_database(FILE *fp, int words_to_read, MarkovChain *markov_chain){
     char line[MAX_SENT];
     Node *prev_node = NULL;
@@ -69,8 +115,11 @@ int main(int argc, char *argv[]){
     LinkedList database = {NULL,NULL,ZERO};
     MarkovChain markov_chain ={.database = &database};
     MarkovChain *ptr_chain =&markov_chain;
+    if (argc == FIVE){
     long word_num= strtol(argv[4],NULL,TEN);
-    fill_database(fp,(int)word_num,&markov_chain);
+    fill_database(fp,(int)word_num,&markov_chain);}
+    else{ long word_num = count_words_in_file(argv[4]);
+        fill_database(fp,(int)word_num,&markov_chain);}
     int i =1;
     long tweet_num = strtol(argv[2],NULL,TEN);
     while(tweet_num!= 0){
