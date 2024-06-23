@@ -127,8 +127,8 @@ void free_database(MarkovChain ** ptr_chain){
         free(tmp->data);
         free(tmp);
     }
-    free((*ptr_chain)->database);
-    free(*ptr_chain);
+//    free((*ptr_chain)->database);
+//    free(*ptr_chain);
 }
 
 

@@ -99,15 +99,9 @@ int main(int argc, char *argv[]){
         printf(NUM_ARGS_ERROR);
         return EXIT_FAILURE;}
 
-//    if(argv[4] == NULL){
-//        printf(FILE_PATH_ERROR);
-//        return EXIT_FAILURE;
-//        }
-
-    //if argv[5] > maxwords;
     size_t seed = strtol(argv[1],NULL,TEN);
     srand(seed);
-    printf("%s", argv[3]);
+//    printf("%s", argv[3]);
     FILE *fp = fopen(argv[3],"r");
     if(fp==NULL){ printf(FILE_PATH_ERROR);
         return EXIT_FAILURE;}
