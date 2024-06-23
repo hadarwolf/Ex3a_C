@@ -80,7 +80,8 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr){
 int add_node_to_frequency_list(MarkovNode *first_node
         , MarkovNode *second_node){
     for(int i =0; i < first_node->size_freq_lst; i++){
-        if(strcmp(first_node->frequency_list[i].markov_node->data,second_node->data)==0){
+        if(strcmp(first_node->frequency_list[i].markov_node->data
+                  ,second_node->data)==0){
             first_node->frequency_list[i].frequency += 1;
             return EXIT_SUCCESS;
         }
@@ -138,7 +139,7 @@ MarkovNode* get_next_random_node(MarkovNode *cur_markov_node){
         max_num += cur_markov_node->frequency_list[i].frequency;
     }
     int rand_num = get_random_number(max_num);
-    int cur_freq = ZERO;
+//    int cur_freq = ZERO;
     for(int j =ZERO; j < cur_markov_node->size_freq_lst ;j++){
         rand_num -= cur_markov_node->frequency_list[j].frequency;
         if(rand_num < 0){
