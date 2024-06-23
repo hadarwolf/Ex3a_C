@@ -47,7 +47,7 @@ int count_words_in_line(const char *line) {
 int count_words_in_file(const char *file_path) {
     FILE *file = fopen(file_path, "r");
     if (file == NULL) {
-        printf("Error: The file '%s' was not found.\n", file_path);
+//        printf("Error: The file '%s' was not found.\n", file_path);
         return EXIT_FAILURE;
     }
 
