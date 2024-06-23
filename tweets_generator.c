@@ -117,7 +117,7 @@ int main(int argc, char *argv[]){
     int i =1;
     long tweet_num = strtol(argv[2],NULL,TEN);
     while(tweet_num!= 0){
-        printf("Tweet %d",i);
+        printf("Tweet %d: ",i);
         MarkovNode *first_node =get_first_random_node(&markov_chain);
         generate_tweet(first_node, MAX_LEN);
         i++;

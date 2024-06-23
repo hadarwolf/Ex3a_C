@@ -165,6 +165,7 @@ MarkovNode* get_next_random_node(MarkovNode *cur_markov_node){
 
 void generate_tweet(MarkovNode *first_node, int max_length){
     MarkovNode *cur_node = first_node;
+    printf("%s", cur_node->data);
     while(max_length!=ZERO){
         MarkovNode * next_node =get_next_random_node(cur_node);
         if(!next_node){ break;}
