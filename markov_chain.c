@@ -94,7 +94,8 @@ int add_node_to_frequency_list(MarkovNode *first_node
     first_node->frequency_list[first_node->size_freq_lst]=
             (MarkovNodeFrequency){second_node,1};
 
-//    first_node->frequency_list[first_node->size_freq_lst].markov_node = second_node;
+//    first_node->frequency_list[first_node->size_freq_lst]
+//    .markov_node = second_node;
 //    first_node->frequency_list[first_node->size_freq_lst].frequency = 1;
     first_node->size_freq_lst +=1;
     return EXIT_SUCCESS;}
