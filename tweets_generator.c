@@ -112,7 +112,7 @@ int main(int argc, char *argv[]){
     if (argc == FIVE){
     long word_num= strtol(argv[4],NULL,TEN);
     fill_database(fp,(int)word_num,&markov_chain);}
-    else{ long word_num = count_words_in_file(argv[4]);
+    else{ long word_num = count_words_in_file(argv[3]);
         fill_database(fp,(int)word_num,&markov_chain);}
     int i =1;
     long tweet_num = strtol(argv[2],NULL,TEN);
