@@ -66,8 +66,6 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr){
     }
     memcpy(n_str, data_ptr, (int)(strlen(data_ptr)+1));
     *markov_node= (MarkovNode){n_str,NULL,0};
-//    printf("%s", markov_chain->database->first->data->data);
-//    printf("%s", markov_chain->database->last->data->data);
     int check = add(markov_chain->database,markov_node);
     if (check==1){//free?
         free(n_str);
@@ -113,8 +111,6 @@ void free_database(MarkovChain ** ptr_chain){
         free(tmp->data);
         free(tmp);
     }
-//    free((*ptr_chain)->database);
-//    free(*ptr_chain);
 }
 
 
@@ -139,7 +135,6 @@ MarkovNode* get_next_random_node(MarkovNode *cur_markov_node){
         max_num += cur_markov_node->frequency_list[i].frequency;
     }
     int rand_num = get_random_number(max_num);
-//    int cur_freq = ZERO;
     for(int j =ZERO; j < cur_markov_node->size_freq_lst ;j++){
         rand_num -= cur_markov_node->frequency_list[j].frequency;
         if(rand_num < 0){
