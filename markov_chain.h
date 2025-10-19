@@ -18,7 +18,6 @@ typedef struct MarkovNode{
     char *data;
     struct MarkovNodeFrequency* frequency_list;
     int size_freq_lst;
-//    struct MarkovNode* next;
 
     // any other field you need
 } MarkovNode;
@@ -26,7 +25,6 @@ typedef struct MarkovNode{
 typedef struct MarkovNodeFrequency{
     struct MarkovNode* markov_node;
     int frequency;
-//    struct MarkovNodeFrequency* next
     // any other fields you need
 } MarkovNodeFrequency;
 
